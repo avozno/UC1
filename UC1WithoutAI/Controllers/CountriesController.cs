@@ -19,5 +19,12 @@ namespace WebApplication1.Controllers
         {
             return Ok(await _countriesService.GetCountries());
         }
+
+        [HttpGet(Name = "GetCountriesByName")]
+        public async Task<IActionResult> GetCountriesFilteredByName(string search)
+        {
+            return Ok(await _countriesService.GetCountriesFilteredByName(search));
+        }
     }
+}
 }

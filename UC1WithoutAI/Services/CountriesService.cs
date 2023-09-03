@@ -16,5 +16,12 @@ namespace UCWithoutAi.Services
         {
             return await _providerService.GetData();
         }
+
+        public async Task<IEnumerable<Country>> GetCountriesFilteredByName(string countryName)
+        {
+            var res = await _providerService.GetData();
+            var lowerCaseSearch = countryName.ToLower();
+            return res.Where(i => i.Name.Common.ToLower().Contains(lowerCaseSearch));
+        }
     }
 }
