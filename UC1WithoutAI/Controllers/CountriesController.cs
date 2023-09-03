@@ -31,5 +31,11 @@ namespace WebApplication1.Controllers
         {
             return Ok(await _countriesService.GetCountriesLimitedByPopulationInMillions(limit));
         }
+
+        [HttpGet(Name = "GetCountriesSortedByName")]
+        public async Task<IActionResult> GetCountriesOrderedByName(string orderDirection)
+        {
+            return Ok(await _countriesService.GetCountriesOrderedByName(orderDirection));
+        }
     }
 }
