@@ -9,6 +9,6 @@ namespace UCWithoutAi.Services
         Task<IEnumerable<Country>> GetCountriesLimitedByPopulationInMillions(short limit);
         Task<IEnumerable<Country>> GetCountriesOrderedByName(string orderDirection);
         Task<IEnumerable<Country>> GetCountriesWithPagination(int page, int itemsPerPage);
-
+        Task<IEnumerable<Country>> GetCountriesFiltered(string? search, short? limit, string? orderDirection, int? page, int? itemsPerPage);
     }
 }

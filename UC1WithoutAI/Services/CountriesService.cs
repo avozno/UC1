@@ -42,6 +42,28 @@ namespace UCWithoutAi.Services
             return Paginate(res, page, itemsPerPage);
         }
 
+        public async Task<IEnumerable<Country>> GetCountriesFiltered(string? search, short? limit, string? orderDirection, int? page, int? itemsPerPage)
+        {
+            IEnumerable<Country> res = await _providerService.GetData();
+            if (search != null)
+            {
+                res = FilterByName(res, search);
+            }
+            if (limit != null)
+            {
+                res = LimitByPopulation(res, limit.Value);
+            }
+            if (orderDirection != null)
+            {
+                res = OrderByName(res, orderDirection);
+            }
+            if (page != null && itemsPerPage != null)
+            {
+                Paginate(res, page.Value, itemsPerPage.Value);
+            }
+            return res;
+        }
+
         private IEnumerable<Country> FilterByName(IEnumerable<Country> list, string filter)
         {
             var lowerCaseSearch = filter.ToLower();
@@ -69,7 +91,11 @@ namespace UCWithoutAi.Services
 
         private IEnumerable<Country> Paginate(IEnumerable<Country> list, int page, int itemsPerPage)
         {
-            return list.Skip(page * itemsPerPage).Take(itemsPerPage);
+            if (page < 0 || itemsPerPage < 0)
+            {
+                return new List<Country>();
+            }
+            return list.Skip((page - 1) * itemsPerPage).Take(itemsPerPage);
         }
     }
 }
