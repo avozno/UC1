@@ -36,6 +36,12 @@ namespace UCWithoutAi.Services
             return OrderByName(res, orderDirection);
         }
 
+        public async Task<IEnumerable<Country>> GetCountriesWithPagination(int page, int itemsPerPage)
+        {
+            var res = await _providerService.GetData();
+            return Paginate(res, page, itemsPerPage);
+        }
+
         private IEnumerable<Country> FilterByName(IEnumerable<Country> list, string filter)
         {
             var lowerCaseSearch = filter.ToLower();
@@ -59,6 +65,11 @@ namespace UCWithoutAi.Services
                 return list.OrderByDescending(i => i.Name.Common);
             }
             return list;
+        }
+
+        private IEnumerable<Country> Paginate(IEnumerable<Country> list, int page, int itemsPerPage)
+        {
+            return list.Skip(page * itemsPerPage).Take(itemsPerPage);
         }
     }
 }

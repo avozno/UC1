@@ -37,5 +37,12 @@ namespace WebApplication1.Controllers
         {
             return Ok(await _countriesService.GetCountriesOrderedByName(orderDirection));
         }
+
+
+        [HttpGet(Name = "GetCountries")]
+        public async Task<IActionResult> GetCountries(int page, int itemsPerPage)
+        {
+            return Ok(await _countriesService.GetCountriesWithPagination(page, itemsPerPage));
+        }
     }
 }
