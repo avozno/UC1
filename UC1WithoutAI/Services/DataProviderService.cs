@@ -10,14 +10,14 @@ namespace UCWithoutAi.Services
         private const string REST_COUNTRIES = "https://restcountries.com";
         private const string CURR_VER = "v3.1/all";
         private readonly HttpClient _client;
-        private IEnumerable<Country> _countries;
+        private List<Country>? _countries = null;
         public DataProviderService(IHttpClientFactory _httpClientFactory)
         {
             _client = _httpClientFactory.CreateClient();
             _client.BaseAddress = new Uri(REST_COUNTRIES);
         }
 
-        public async Task<IEnumerable<Country>> GetData()
+        public async Task<List<Country>> GetData()
         {
             if (_countries != null)
             {
@@ -25,7 +25,7 @@ namespace UCWithoutAi.Services
             }
             try
             {
-                var res = await _client.GetFromJsonAsync<IEnumerable<Country>>(CURR_VER);
+                var res = await _client.GetFromJsonAsync<List<Country>>(CURR_VER);
                 _countries = res ?? new List<Country>();
                 return _countries;
             }

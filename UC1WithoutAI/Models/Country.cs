@@ -2,7 +2,7 @@
 {
     public class Country
     {
-        public CountryNameWithNative? Name { get; set; }
+        public CountryNameWithNative Name { get; set; }
         public List<string> Tld { get; set; }
         public string? Cca2 { get; set; }
         public string? Ccn3 { get; set; }
@@ -12,7 +12,7 @@
         public string? Status { get; set; }
         public bool UnMember { get; set; }
         public Dictionary<string, Currency> Currencies { get; set; }
-        public Idd? Idd { get; set; }
+        public Idd Idd { get; set; }
         public List<string> Capital { get; set; }
         public List<string> AltSpellings { get; set; }
         public string? Region { get; set; }
@@ -29,14 +29,14 @@
         public long? Population { get; set; }
         public Dictionary<string, double> Gini { get; set; }
         public string? Fifa { get; set; }
-        public Car? Car { get; set; }
+        public Car Car { get; set; }
         public List<string> Timezones { get; set; }
         public List<string> Continents { get; set; }
         public Dictionary<string, string> Flags { get; set; }
         public Dictionary<string, string> CoatOfArms { get; set; }
         public string? StartOfWeek { get; set; }
-        public CapitalInfo? CapitalInfo { get; set; }
-        public PostalCode? PostalCode { get; set; }
+        public CapitalInfo CapitalInfo { get; set; }
+        public PostalCode PostalCode { get; set; }
 
         public Country()
         {
@@ -55,7 +55,11 @@
             Borders = new List<string>();
             Flags = new Dictionary<string, string>();
             CoatOfArms = new Dictionary<string, string>();
-
+            Name = new CountryNameWithNative();
+            Idd = new Idd();
+            Car = new Car();
+            CapitalInfo = new CapitalInfo();
+            PostalCode = new PostalCode();
         }
 
     }

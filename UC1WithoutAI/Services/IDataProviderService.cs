@@ -4,6 +4,6 @@ namespace UCWithoutAi.Services
 {
     public interface IDataProviderService
     {
-        Task<IEnumerable<Country>> GetData();
+        Task<List<Country>> GetData();
     }
 }

@@ -4,7 +4,8 @@ namespace UCWithoutAi.Services
 {
     public interface ICountriesService
     {
-        Task<IEnumerable<Country>> GetCountries();
+        Task<List<Country>> GetCountries();
         Task<IEnumerable<Country>> GetCountriesFilteredByName(string countryName);
+        Task<IEnumerable<Country>> GetCountriesLimitedByPopulationInMillions(short limit);
     }
 }
