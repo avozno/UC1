@@ -4,12 +4,11 @@ namespace UCWithoutAi.Services
 {
     public class CountriesService : ICountriesService
     {
-        private IDataProviderService _providerService;
-        private int _limitMultiplier = 1000000;
+        private readonly IDataProviderService _providerService;
+        private const int LIMIT_MULTIPLIER = 1000000;
 
         public CountriesService(IDataProviderService providerService)
         {
-
             _providerService = providerService;
         }
 
@@ -73,7 +72,7 @@ namespace UCWithoutAi.Services
 
         private IEnumerable<Country> LimitByPopulation(IEnumerable<Country> list, short limit)
         {
-            var limitInMillions = limit * _limitMultiplier;
+            var limitInMillions = limit * LIMIT_MULTIPLIER;
             return list.Where(i => i.Population.HasValue && i.Population.Value < limitInMillions);
         }
 

@@ -7,7 +7,7 @@ namespace WebApplication1.Controllers
     [Route("[controller]/[action]")]
     public class CountriesController : ControllerBase
     {
-        private ICountriesService _countriesService;
+        private readonly ICountriesService _countriesService;
 
         public CountriesController(ICountriesService countriesService)
         {
