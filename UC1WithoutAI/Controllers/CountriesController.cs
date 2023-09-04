@@ -45,7 +45,7 @@ namespace WebApplication1.Controllers
 
         [HttpGet]
         [ActionName("GetCountriesByItems")]
-        public async Task<IActionResult> GetCountriesByItems(int page, int itemsPerPage)
+        public async Task<IActionResult> GetNThCountry(int page, int itemsPerPage)
         {
             return Ok(await _countriesService.GetCountriesWithPagination(page, itemsPerPage));
         }
