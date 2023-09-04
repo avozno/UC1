@@ -27,7 +27,8 @@ namespace UCWithoutAi.Services
         public async Task<IEnumerable<Country>> GetCountriesLimitedByPopulationInMillions(short limit)
         {
             var res = await _providerService.GetData();
-            return LimitByPopulation(res, limit);
+            var data = LimitByPopulation(res, limit);
+            return data;
         }
 
         public async Task<IEnumerable<Country>> GetCountriesOrderedByName(string orderDirection)
